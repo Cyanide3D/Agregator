@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>New news</title>
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="main__header">
+    <h1>NEWS</h1>
+</div>
+<div class="main__content">
+    <div class="content__menu">
+        <ul>
+            <li><a href="/">News</a></li>
+            <li th:if="${#strings.equals('anon', user.username)}"><a href="/user/new">Registration</a></li>
+            <li th:if="${#strings.equals('anon', user.username)}"><a href="/login">Login</a></li>
+            <li th:if="!${#strings.equals('anon', user.username)}"><a href="/news/new">New news</a></li>
+            <li th:if="!${#strings.equals('anon', user.username)}"><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="content__news__new">
+        <form th:action="@{/news/new}" method="post">
+            <div>
+                <label for="name">Name:</label><br>
+                <input type="text" th:value="${news.name}" id="name" name="name"><br><br>
+
+                <label for="description">Description:</label><br>
+                <input type="text" th:value="${news.description}" id="description" name="description"><br><br>
+
+                <label for="body">Body:</label><br>
+                <input type="text" th:value="${news.body}" id="body" name="body"><br><br>
+            </div>
+            <input type="submit" value="Execute">
+        </form>
+    </div>
+    <div class="content__etc">
+        <div class="etc__something">
+            Something
+        </div>
+    </div>
+</div>
+</body>
+</html>

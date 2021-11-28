@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="main__header">
+    <h1>NEWS</h1>
+</div>
+<div class="main__content">
+    <div class="content__menu">
+        <ul>
+            <li><a href="/">News</a></li>
+        </ul>
+    </div>
+    <div class="content__news__new">
+        <div class="content__exception">
+            <p th:text="${exception}"></p>
+        </div>
+    </div>
+    <div class="content__etc">
+        <div class="etc__something">
+            Something
+        </div>
+    </div>
+</div>
+</body>
+</html>

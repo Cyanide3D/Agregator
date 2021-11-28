@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="main__header">
+    <h1>NEWS</h1>
+</div>
+<div class="main__content">
+    <div class="content__menu">
+        <ul>
+            <li><a href="/">News</a></li>
+            <li th:if="${#strings.equals('anon', user.username)}"><a href="/user/new">Registration</a></li>
+            <li th:if="${#strings.equals('anon', user.username)}"><a href="/login">Login</a></li>
+            <li th:if="!${#strings.equals('anon', user.username)}"><a href="/news/new">New news</a></li>
+            <li th:if="!${#strings.equals('anon', user.username)}"><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="content__body">
+        <div class="body__news" th:each="post : ${news}">
+            <div class="news__head">
+                <p th:text="${post.name}"></p>
+            </div>
+            <hr>
+            <div class="news_body">
+                <p th:text="${post.description}"></p>
+            </div>
+            <hr>
+            <div class="news_action">
+                <a th:href="@{/news/{id}(id=${post.id})}">Посмотреть</a>
+            </div>
+        </div>
+    </div>
+    <div class="content__etc">
+        <div class="etc__form">
+            <p>FILTER</p>
+            <form th:action="@{/news/filtered}" method="get">
+                <div>
+                    <label for="partOfName">By name:</label><br>
+                    <input type="text" th:value="${filter.partOfName}" id="partOfName" name="partOfName"><br><br>
+
+                    <label for="daysAgo">Days since publication:</label><br>
+                    <input type="text" th:value="${filter.daysAgo}" id="daysAgo" name="daysAgo"><br><br>
+
+                </div>
+                <input type="submit" value="Filter">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
